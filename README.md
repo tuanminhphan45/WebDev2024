@@ -10,7 +10,7 @@ Students are expected to:
 Student Info
 =======================
 
-* Name: *YourNameHere*
-* ID: *YourIdHere*
-* Group ID: *Your Group ID here*
-* Project Name: *Your Project Name here*
+* Name: Nguyen Quang Minh
+* ID: 22BI13301
+* Group ID: 8
+* Project Name: Online Polling and Survey System
