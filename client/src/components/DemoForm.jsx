@@ -1,6 +1,6 @@
 import React from "react";
 import { Checkbox, Radio, TextField, Button } from "@mui/material";
-import FormTitle from "./FormBuilder/FormTitle";
+import FormTitle from "./FormCreate/FormBuilder/FormTitle";
 
 const DemoForm = ({
     formTitle,

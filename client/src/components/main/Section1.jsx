@@ -2,7 +2,7 @@ import { IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import React, { useEffect, useState } from "react";
-import {useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Section1 = () => {
@@ -73,7 +73,8 @@ const Section1 = () => {
                     </button>
 
                     {data.map((item, index) => (
-                        <button
+                        <Link
+                            to={`/form/${item.id}`}
                             className="w-[170px] cursor-pointer flex flex-col items-start justify-start"
                             key={item.id}
                         >
@@ -87,7 +88,7 @@ const Section1 = () => {
                             <span className="text-base py-3">
                                 {item.formTitle}
                             </span>
-                        </button>
+                        </Link>
                     ))}
                 </div>
             </div>
