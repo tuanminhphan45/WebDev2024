@@ -5,25 +5,25 @@ import Question from "../FormCreate/FormBuilder/Question";
 import DemoForm from "../DemoForm";
 import axios from "axios";
 import FormTitleView from "./FormTitleView";
+import { useNavigate } from "react-router-dom";
 
 const FormBuilderView = ({
     id,
-    initialformTitle = "Untitled Form",
-    initialformDescription = "",
+    initialTitle = "Untitled Form",
+    initialDescription = "",
     initialQuestions = [],
 }) => {
-    const [formTitleState, setFormTitleState] = useState(initialformTitle);
-    const [formDescription, setFormDescription] = useState(
-        initialformDescription
-    );
+    const [title, setTitle] = useState(initialTitle);
+    const [description, setDescription] = useState(initialDescription);
     const [questions, setQuestions] = useState(initialQuestions);
-    const [isFormDemoMode, setIsFormDemoMode] = useState(false);
+    const [isDemoMode, setIsDemoMode] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        setFormTitleState(initialformTitle);
-        setFormDescription(initialformDescription);
+        setTitle(initialTitle);
+        setDescription(initialDescription);
         setQuestions(initialQuestions);
-    }, [initialformTitle, initialformDescription, initialQuestions]);
+    }, [initialTitle, initialDescription, initialQuestions]);
 
     const addQuestion = () => {
         setQuestions([
@@ -41,51 +41,55 @@ const FormBuilderView = ({
     const deleteQuestion = (id) =>
         setQuestions(questions.filter((q) => q.id !== id));
 
-    const saveForm = async (formData) => {
+    const deleteFormData = async () => {
         try {
-            const response = await axios.put(
-                `http://localhost:3000/questions/${id}`,
-                formData
-            );
-            return response.data;
+            await axios.delete(`http://localhost:3000/questions/${id}`);
+            navigate("/main");
         } catch (error) {
-            console.error("Error saving form", error);
+            alert("Failed to delete form data.");
+        }
+    };
+
+    const saveForm = async (data) => {
+        try {
+            await axios.put(`http://localhost:3000/questions/${id}`, data);
+        } catch (error) {
             throw error;
         }
     };
 
     const handleSubmit = async () => {
-        const formData = {
-            formTitle: formTitleState,
-            formDescription,
+        const data = {
+            formTitle: title,
+            formDescription: description,
             questions,
         };
         try {
-            await saveForm(formData);
+            await saveForm(data);
             alert("Form saved successfully!");
         } catch (error) {
             alert("Failed to save the form.");
         }
     };
 
-    const toggleFormDemoMode = () => setIsFormDemoMode(!isFormDemoMode);
+    const toggleDemoMode = () => setIsDemoMode(!isDemoMode);
 
     return (
         <div>
-            {isFormDemoMode ? (
+            {isDemoMode ? (
                 <DemoForm
                     questions={questions}
-                    formTitle={formTitleState}
-                    formDescription={formDescription}
-                    toggleFormDemoMode={toggleFormDemoMode}
+                    formTitle={title}
+                    formDescription={description}
+                    toggleFormDemoMode={toggleDemoMode}
                 />
             ) : (
                 <div className="mx-auto max-w-screen-lg">
                     <FormTitleView
-                        formTitle={formTitleState}
-                        formDescription={formDescription}
-                        setFormTitle={setFormTitleState}
-                        setFormDescription={setFormDescription}
+                        formTitle={title}
+                        formDescription={description}
+                        setFormTitle={setTitle}
+                        setFormDescription={setDescription}
                     />
                     {questions.map((question, index) => (
                         <Question
@@ -114,11 +118,19 @@ const FormBuilderView = ({
                             Save Form
                         </Button>
                         <Button
-                            onClick={toggleFormDemoMode}
+                            onClick={toggleDemoMode}
                             variant="outlined"
                             color="secondary"
+                            className="!mr-5"
                         >
                             Show Demo
+                        </Button>
+                        <Button
+                            onClick={deleteFormData}
+                            variant="outlined"
+                            color="error"
+                        >
+                            Delete Form
                         </Button>
                     </div>
                 </div>
