@@ -13,7 +13,7 @@ import {
     TextField,
     Drawer,
 } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Sidebar from "../Main/SideBar/SideBar";
 
 const HeaderForm = ({ formTitle }) => {
@@ -53,7 +53,7 @@ const HeaderForm = ({ formTitle }) => {
                 <Drawer open={isDrawerOpen} onClose={toggleDrawer(false)}>
                     <Sidebar toggleDrawer={toggleDrawer} />
                 </Drawer>
-                <div className="flex items-center ml-5">
+                <Link to={"/main"} className="flex items-center ml-5">
                     <img
                         src="https://banner2.cleanpng.com/lnd/20240523/goy/axz66glt0.webp"
                         alt="Logo"
@@ -62,7 +62,7 @@ const HeaderForm = ({ formTitle }) => {
                     <span className="HeaderForm-title px-5 text-xl">
                         {formTitle}
                     </span>
-                </div>
+                </Link>
             </div>
             <div className="HeaderForm_search bg-gray-100 w-[600px] max-w-[800px] p-5 h-[45px] rounded-lg flex items-center">
                 <IconButton aria-label="search">
