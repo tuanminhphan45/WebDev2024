@@ -57,7 +57,7 @@ const Section1 = () => {
                         </IconButton>
                     </div>
                 </div>
-                <div className="grid grid-cols-6 mt-4 gap-10">
+                <div className="grid grid-cols-5 grid-rows-1 mt-4 gap-10">
                     <button
                         className="w-[170px] cursor-pointer flex flex-col items-start justify-start"
                         onClick={() => goTo("/create-form")}

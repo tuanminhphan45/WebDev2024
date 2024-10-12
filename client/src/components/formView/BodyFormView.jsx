@@ -1,13 +1,13 @@
 import { AppBar, Box, Tab, Tabs, Typography } from "@mui/material";
 import React, { useState } from "react";
-import FormBuilder from "../FormBuilder/FormBuilder";
+import FormBuilderView from "./FormBuilderView";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
     return (
         <div
-            role="tabpanel"
+            role="tabpanel" 
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
@@ -22,7 +22,7 @@ function TabPanel(props) {
     );
 }
 
-const BodyForm = ({ formTitle, setFormTitle }) => {
+const BodyForm = (props) => {
     const [tabValue, setTabValue] = useState(0);
 
     const handleChange = (event, newValue) => {
@@ -42,25 +42,21 @@ const BodyForm = ({ formTitle, setFormTitle }) => {
                 >
                     <Tab label="Questions" className="!text-purple-500" />
                     <Tab label="Responses" className="!text-purple-500" />
-                    <Tab label="Settings" className="!text-purple-500" />
                 </Tabs>
             </AppBar>
 
             <TabPanel value={tabValue} index={0}>
-                <FormBuilder
-                    formTitle={formTitle}
-                    setFormTitle={setFormTitle}
+                <FormBuilderView
+                    id={props.id}
+                    initialformTitle={props.formTitle}
+                    initialformDescription={props.formDescription}
+                    initialQuestions={props.questions}
                 />
             </TabPanel>
 
             <TabPanel value={tabValue} index={1}>
                 <h2>Responses</h2>
                 <p>Here you can manage the responses of your form.</p>
-            </TabPanel>
-
-            <TabPanel value={tabValue} index={2}>
-                <h2>Settings</h2>
-                <p>Configure your form settings here.</p>
             </TabPanel>
         </div>
     );

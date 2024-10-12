@@ -3,8 +3,8 @@ import "./App.css";
 
 import Main from "./components/Main/Main";
 import Form from "./components/FormCreate/Form";
-import FormView from "./components/formView/FormView";
-import AuthPage from "./components/authen/AuthPage";
+import FormView from "./components/FormView/FormView";
+import AuthPage from "./components/AuthPage/AuthPage";
 import FormUserInput from "./components/FormUserInput/FormUserInput";
 
 function App() {

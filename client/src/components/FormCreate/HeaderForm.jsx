@@ -14,14 +14,13 @@ import {
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 
-const HeaderForm = () => {
+const HeaderForm = ({ formTitle }) => {
     const { idForm } = useParams();
     const [open, setOpen] = useState(false);
     const [formLink, setFormLink] = useState("");
 
     const handleClickOpen = () => {
-        const generatedLink = `http://localhost:3001/form/input/${idForm}`;
-
+        const generatedLink = `${window.location.origin}/form/input/${idForm}`;
         setFormLink(generatedLink);
         setOpen(true);
     };
@@ -33,20 +32,22 @@ const HeaderForm = () => {
     return (
         <div className="HeaderForm flex justify-between items-center sticky inset-0 p-5 bg-white shadow-md">
             <div className="HeaderForm_left flex items-center">
-                <IconButton>
+                <IconButton aria-label="menu">
                     <MenuIcon />
                 </IconButton>
                 <div className="flex items-center ml-5">
                     <img
                         src="https://banner2.cleanpng.com/lnd/20240523/goy/axz66glt0.webp"
-                        alt="googleimage"
+                        alt="Logo"
                         className="w-[40px] h-[40px] object-cover"
                     />
-                    <span className="HeaderForm-title px-5 text-xl">Form</span>
+                    <span className="HeaderForm-title px-5 text-xl">
+                        {formTitle}
+                    </span>
                 </div>
             </div>
             <div className="HeaderForm_search bg-gray-100 w-[600px] max-w-[800px] p-5 h-[45px] rounded-lg flex items-center">
-                <IconButton>
+                <IconButton aria-label="search">
                     <SearchIcon className="w-[40px] h-[40px]" />
                 </IconButton>
                 <input
@@ -58,10 +59,10 @@ const HeaderForm = () => {
                 />
             </div>
             <div className="HeaderForm_right flex items-center">
-                <IconButton>
+                <IconButton aria-label="apps">
                     <AppsIcon />
                 </IconButton>
-                <IconButton>
+                <IconButton aria-label="avatar">
                     <Avatar alt="avatar" />
                 </IconButton>
                 <Button

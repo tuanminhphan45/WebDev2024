@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import HeaderForm from "../FormCreate/HeaderForm";
-import FormBuilderView from "./FormBuilderView";
+import BodyFormView from "./BodyFormView";
 
 const FormView = () => {
     const { idForm } = useParams();
@@ -26,17 +26,15 @@ const FormView = () => {
 
         fetchFormData();
     }, [idForm]);
+    // console.log(formData);
 
     return (
         <div>
-            <HeaderForm />
             {formData ? (
-                <FormBuilderView
-                    id={formData.id}
-                    initialformTitle={formData.formTitle}
-                    initialformDescription={formData.formDescription}
-                    initialQuestions={formData.questions}
-                />
+                <>
+                    <HeaderForm formTitle={formData.formTitle} />
+                    <BodyFormView {...formData} />
+                </>
             ) : (
                 <p>Loading form data...</p>
             )}
