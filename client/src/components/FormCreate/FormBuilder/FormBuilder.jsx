@@ -70,7 +70,7 @@ const FormBuilder = ({ formTitle, setFormTitle }) => {
                     toggleFormDemoMode={toggleFormDemoMode}
                 />
             ) : (
-                <div className="mx-auto max-w-screen-lg">
+                <div className="mx-auto max-w-screen-lg mt-10">
                     <FormTitle
                         formTitle={formTitle}
                         formDescription={formDescription}

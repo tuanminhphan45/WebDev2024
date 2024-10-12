@@ -9,6 +9,7 @@ const Section1 = () => {
     const [data, setData] = useState([]);
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
+
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
@@ -16,16 +17,13 @@ const Section1 = () => {
                     "http://localhost:3000/questions"
                 );
                 setData(response.data);
-                return response.data;
             } catch {
-                return alert("Failed to fetch data");
+                alert("Failed to fetch data");
             }
         };
 
         fetchQuestions();
     }, []);
-
-    console.log(data);
 
     const goTo = (path) => {
         navigate(path);
@@ -51,12 +49,12 @@ const Section1 = () => {
                                 <KeyboardDoubleArrowDownIcon />
                             </IconButton>
                         </button>
-
                         <IconButton>
                             <MoreVertIcon />
                         </IconButton>
                     </div>
                 </div>
+
                 <div className="grid grid-cols-5 grid-rows-1 mt-4 gap-10">
                     <button
                         className="w-[170px] cursor-pointer flex flex-col items-start justify-start"
@@ -72,7 +70,7 @@ const Section1 = () => {
                         <span className="text-base py-3">Bank Form</span>
                     </button>
 
-                    {data.map((item, index) => (
+                    {(show ? data : data.slice(0, 4)).map((item, index) => (
                         <Link
                             to={`/form/${item.id}`}
                             className="w-[170px] cursor-pointer flex flex-col items-start justify-start"

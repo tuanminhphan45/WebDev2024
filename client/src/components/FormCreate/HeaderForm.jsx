@@ -11,13 +11,27 @@ import {
     DialogTitle,
     Button,
     TextField,
+    Drawer,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
+import Sidebar from "../Main/SideBar/SideBar";
 
 const HeaderForm = ({ formTitle }) => {
     const { idForm } = useParams();
     const [open, setOpen] = useState(false);
     const [formLink, setFormLink] = useState("");
+
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+    const toggleDrawer = (open) => (event) => {
+        if (
+            event.type === "keydown" &&
+            (event.key === "Tab" || event.key === "Shift")
+        ) {
+            return;
+        }
+        setIsDrawerOpen(open);
+    };
 
     const handleClickOpen = () => {
         const generatedLink = `${window.location.origin}/form/input/${idForm}`;
@@ -32,9 +46,13 @@ const HeaderForm = ({ formTitle }) => {
     return (
         <div className="HeaderForm flex justify-between items-center sticky inset-0 p-5 bg-white shadow-md">
             <div className="HeaderForm_left flex items-center">
-                <IconButton aria-label="menu">
+                <IconButton onClick={toggleDrawer(true)}>
                     <MenuIcon />
                 </IconButton>
+
+                <Drawer open={isDrawerOpen} onClose={toggleDrawer(false)}>
+                    <Sidebar toggleDrawer={toggleDrawer} />
+                </Drawer>
                 <div className="flex items-center ml-5">
                     <img
                         src="https://banner2.cleanpng.com/lnd/20240523/goy/axz66glt0.webp"
