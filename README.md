@@ -10,7 +10,7 @@ Students are expected to:
 Student Info
 =======================
 
-* Name: Nguyen Quang Minh
-* ID: 22BI13301
+* Name: Phan Nguyễn Tuấn Minh
+* ID: 22BI13307
 * Group ID: 8
 * Project Name: Online Polling and Survey System
