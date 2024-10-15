@@ -7,11 +7,9 @@ import FormView from "./components/FormView/FormView";
 import AuthPage from "./components/AuthPage/AuthPage";
 import FormUserInput from "./components/FormUserInput/FormUserInput";
 import SearchResult from "./components/SearchHeader/SearchResult";
-import { FormProvider } from "./components/FormCreate/FormContext";
 
 function App() {
     return (
-        <FormProvider>
             <Routes>
                 <Route path="/" element={<AuthPage />} />
                 <Route path="/main" element={<Main />} />
@@ -20,7 +18,6 @@ function App() {
                 <Route path="/form/input/:idForm" element={<FormUserInput />} />
                 <Route path="/search" element={<SearchResult />} />
             </Routes>
-        </FormProvider>
     );
 }
 
