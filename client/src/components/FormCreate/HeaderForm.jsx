@@ -44,7 +44,7 @@ const HeaderForm = ({ formTitle }) => {
     };
 
     return (
-        <div className="HeaderForm flex justify-between items-center sticky inset-0 p-5 bg-white shadow-md">
+        <div className="HeaderForm flex justify-between items-center sticky inset-0 p-5 bg-white shadow-md z-20">
             <div className="HeaderForm_left flex items-center">
                 <IconButton onClick={toggleDrawer(true)}>
                     <MenuIcon />

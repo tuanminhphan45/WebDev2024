@@ -7,7 +7,7 @@ import FormUserTitle from "./FormUserTitle";
 const FormUserInput = () => {
     const { idForm } = useParams();
     const [formData, setFormData] = useState(null);
-    const [responses, setResponses] = useState({}); 
+    const [responses, setResponses] = useState({});
 
     useEffect(() => {
         const fetchFormData = async () => {
@@ -28,19 +28,18 @@ const FormUserInput = () => {
         fetchFormData();
     }, [idForm]);
 
-    
     const handleInputChange = (questionId, value) => {
         setResponses({
             ...responses,
-            [questionId]: value, 
+            [questionId]: value,
         });
     };
 
     const handleSubmit = async () => {
         try {
             await axios.post("http://localhost:3000/responses", {
-                formId: idForm, 
-                responses, 
+                formId: idForm,
+                responses,
             });
             alert("Form submitted successfully!");
         } catch (error) {
@@ -53,7 +52,7 @@ const FormUserInput = () => {
     }
 
     return (
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-3xl mt-10">
             <FormUserTitle
                 formTitle={formData.formTitle}
                 formDescription={formData.formDescription}
