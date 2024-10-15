@@ -14,7 +14,7 @@ import {
     Drawer,
 } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-import Sidebar from "../Main/SideBar/SideBar";
+import Sidebar from "../SideBar/SideBar";
 
 const HeaderForm = ({ formTitle }) => {
     const { idForm } = useParams();

@@ -26,7 +26,7 @@ const FormView = () => {
 
         fetchFormData();
     }, [idForm]);
-    // console.log(formData);
+    
 
     return (
         <div>
