@@ -7,7 +7,7 @@ function TabPanel(props) {
 
     return (
         <div
-            role="tabpanel" 
+            role="tabpanel"
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
@@ -28,6 +28,7 @@ const BodyForm = (props) => {
     const handleChange = (event, newValue) => {
         setTabValue(newValue);
     };
+    // console.log(props.formTitle);
 
     return (
         <div>

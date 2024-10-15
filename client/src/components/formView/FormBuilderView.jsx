@@ -9,21 +9,21 @@ import { useNavigate } from "react-router-dom";
 
 const FormBuilderView = ({
     id,
-    initialTitle = "Untitled Form",
+    initialformTitle,
     initialDescription = "",
     initialQuestions = [],
 }) => {
-    const [title, setTitle] = useState(initialTitle);
+    const [title, setTitle] = useState(initialformTitle);
     const [description, setDescription] = useState(initialDescription);
     const [questions, setQuestions] = useState(initialQuestions);
     const [isDemoMode, setIsDemoMode] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        setTitle(initialTitle);
+        setTitle(initialformTitle);
         setDescription(initialDescription);
         setQuestions(initialQuestions);
-    }, [initialTitle, initialDescription, initialQuestions]);
+    }, [initialformTitle, initialDescription, initialQuestions]);
 
     const addQuestion = () => {
         setQuestions([
