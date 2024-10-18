@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import AppsIcon from "@mui/icons-material/Apps";
 import {
     Avatar,
     IconButton,
@@ -44,8 +42,8 @@ const HeaderForm = ({ formTitle }) => {
     };
 
     return (
-        <div className="HeaderForm flex justify-between items-center sticky inset-0 p-5 bg-white shadow-md z-20">
-            <div className="HeaderForm_left flex items-center">
+        <div className=" flex justify-between items-center sticky inset-0 p-5 bg-white shadow-md z-20">
+            <div className=" flex items-center">
                 <IconButton onClick={toggleDrawer(true)}>
                     <MenuIcon />
                 </IconButton>
@@ -59,27 +57,13 @@ const HeaderForm = ({ formTitle }) => {
                         alt="Logo"
                         className="w-[40px] h-[40px] object-cover"
                     />
-                    <span className="HeaderForm-title px-5 text-xl">
-                        {formTitle}
-                    </span>
                 </Link>
+                <span className="HeaderForm-title px-5 text-xl">
+                    {formTitle}
+                </span>
             </div>
-            <div className="HeaderForm_search bg-gray-100 w-[600px] max-w-[800px] p-5 h-[45px] rounded-lg flex items-center">
-                <IconButton aria-label="search">
-                    <SearchIcon className="w-[40px] h-[40px]" />
-                </IconButton>
-                <input
-                    type="text"
-                    name="search"
-                    id="search"
-                    className="w-full bg-transparent outline-none"
-                    placeholder="Search"
-                />
-            </div>
-            <div className="HeaderForm_right flex items-center">
-                <IconButton aria-label="apps">
-                    <AppsIcon />
-                </IconButton>
+
+            <div className=" flex items-center">
                 <IconButton aria-label="avatar">
                     <Avatar alt="avatar" />
                 </IconButton>
@@ -87,7 +71,7 @@ const HeaderForm = ({ formTitle }) => {
                     variant="contained"
                     color="primary"
                     onClick={handleClickOpen}
-                    className="ml-4 bg-purple-600 hover:bg-purple-700"
+                    className="!ml-4 bg-purple-600 hover:bg-purple-700"
                 >
                     Send
                 </Button>

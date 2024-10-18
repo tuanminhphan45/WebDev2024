@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import Main from "./components/Main/Main";
+import Main from "./components/Home/Main";
 import Form from "./components/FormCreate/Form";
-import FormView from "./components/FormView/FormView";
+import FormView from "./components/formView/FormView";
 import AuthPage from "./components/AuthPage/AuthPage";
 import FormUserInput from "./components/FormUserInput/FormUserInput";
 import SearchResult from "./components/SearchHeader/SearchResult";

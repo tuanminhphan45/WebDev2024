@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { IconButton, Drawer, Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import AppsIcon from "@mui/icons-material/Apps";
 import Sidebar from "../SideBar/SideBar";
 import SearchBar from "../SearchHeader/SearchBar";
 
@@ -43,16 +42,11 @@ const Header = () => {
                 </Link>
             </div>
 
-            <SearchBar/>
+            <SearchBar />
 
-            <div className="header_right flex items-center">
-                <IconButton>
-                    <AppsIcon />
-                </IconButton>
-                <IconButton>
-                    <Avatar alt="avatar" />
-                </IconButton>
-            </div>
+            <IconButton>
+                <Avatar alt="avatar" />
+            </IconButton>
         </div>
     );
 };

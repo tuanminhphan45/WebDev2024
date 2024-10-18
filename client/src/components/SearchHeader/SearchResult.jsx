@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
-import Header from "../Main/Header";
+import Header from "../Home/Header";
 
 const SearchResult = () => {
     const location = useLocation();

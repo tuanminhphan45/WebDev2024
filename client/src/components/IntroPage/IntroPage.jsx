@@ -53,9 +53,7 @@ const IntroPage = () => {
         <div>
             <HeaderIntro />
             <IntroSection />
-            <div className="flex flex-col space-y-12 px-12">
-                <ServiceRow services={data} />
-            </div>
+            <ServiceRow services={data} />
             <Footer />
         </div>
     );

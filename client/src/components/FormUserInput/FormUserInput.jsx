@@ -36,14 +36,49 @@ const FormUserInput = () => {
     };
 
     const handleSubmit = async () => {
+        console.log("start handling submit...");
         try {
-            await axios.post("http://localhost:3000/responses", {
-                formId: idForm,
-                responses,
-            });
-            alert("Form submitted successfully!");
+            const url = process.env.REACT_APP_API_RESPONSE;
+
+            // Create an array of responses in the format your schema expects
+            const formattedResponses = Object.entries(responses).map(
+                ([questionId, answer]) => ({
+                    questionId, // The question ID
+                    answer, // The user's answer (either text, checkbox selections, or radio)
+                })
+            );
+
+            // const submissionData = {
+            //   respondent: "USER_ID",
+            //   formToken: formToken, // The survey ID (or formToken in this case)
+            //   responses: formattedResponses, // The formatted responses
+            //   submittedAt: new Date(),
+            // };
+
+            const submissionData = {
+                respondent: "USER_ID",
+                survey: formData._id, // The survey ID (or formToken in this case)
+                responses: formattedResponses, // The formatted responses
+                submittedAt: new Date(),
+            };
+
+            // Send the submission to the backend
+            const response = await axios.post(
+                "http://localhost:3000/responses",
+                submissionData
+                // {
+                //   withCredentials: true,
+                // }
+            );
+
+            if (response.status === 200) {
+                alert("Form submitted successfully!");
+            } else {
+                alert("Failed to submit form.");
+            }
         } catch (error) {
-            alert("Something went wrong while submitting the form.");
+            console.error("Submission error:", error);
+            alert("An error occurred while submitting the form.");
         }
     };
 
@@ -58,7 +93,7 @@ const FormUserInput = () => {
                 formDescription={formData.formDescription}
             />
             {formData.questions.map((question) => (
-                <div key={question.id} className="mb-5">
+                <div key={question._id} className="mb-5">
                     <p className="font-bold">{question.questionText}</p>
 
                     {question.questionType === "checkbox" &&
@@ -69,21 +104,21 @@ const FormUserInput = () => {
                             >
                                 <Checkbox
                                     checked={
-                                        responses[question.id]?.includes(
+                                        responses[question._id]?.includes(
                                             option
                                         ) || false
                                     }
                                     onChange={(e) => {
                                         const selectedOptions =
-                                            responses[question.id] || [];
+                                            responses[question._id] || [];
                                         if (e.target.checked) {
-                                            handleInputChange(question.id, [
+                                            handleInputChange(question._id, [
                                                 ...selectedOptions,
                                                 option,
                                             ]);
                                         } else {
                                             handleInputChange(
-                                                question.id,
+                                                question._id,
                                                 selectedOptions.filter(
                                                     (opt) => opt !== option
                                                 )
@@ -102,9 +137,9 @@ const FormUserInput = () => {
                                 className="flex items-center mb-2"
                             >
                                 <Radio
-                                    checked={responses[question.id] === option}
+                                    checked={responses[question._id] === option}
                                     onChange={() =>
-                                        handleInputChange(question.id, option)
+                                        handleInputChange(question._id, option)
                                     }
                                 />
                                 <label>{option}</label>
@@ -116,9 +151,9 @@ const FormUserInput = () => {
                             fullWidth
                             variant="outlined"
                             placeholder="Enter your answer"
-                            value={responses[question.id] || ""}
+                            value={responses[question._id] || ""}
                             onChange={(e) =>
-                                handleInputChange(question.id, e.target.value)
+                                handleInputChange(question._id, e.target.value)
                             }
                         />
                     )}

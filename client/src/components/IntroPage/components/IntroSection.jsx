@@ -1,8 +1,8 @@
 import React from "react";
 import speaker from "../../../assets/image/Illustration.png";
 const IntroSection = () => (
-    <section className="flex items-center justify-between p-12 mt-10">
-        <div className="max-w-lg">
+    <div className="flex items-center justify-between mt-20 mx-auto max-w-6xl">
+        <div>
             <h1 className="text-4xl font-bold">
                 Create online <br /> forms & surveys <br /> to your liking!
             </h1>
@@ -16,7 +16,7 @@ const IntroSection = () => (
             </button>
         </div>
         <img src={speaker} alt="Speaker" className="max-w-md" />
-    </section>
+    </div>
 );
 
 export default IntroSection;
